@@ -12,6 +12,8 @@ $fin = [
     //dashboard
     '/fin/dashboard' => $basePath . "dashboard.php",
 
+    '/fin/logs' => $basePath . "accountantAuditLog.php",
+
     //reports
     '/fin/reportIncome' => $basePath . "reportIncome.php",
     '/fin/reportCash' => $basePath . "reportCash.php",

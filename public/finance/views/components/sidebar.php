@@ -149,6 +149,14 @@
             </a>
         </li>
 
+        <li class="mb-1 hover:bg-slate-400 rounded-xl">
+            <a route="/fin/logs" class="flex items-center py-2 px-4 text-white hover:text-black">
+                <i class="ri-speed-up-line mr-3 text-lg"></i>
+                <span class="text-sm font-medium">Audit Logs</span>
+                <i class="ri-arrow-down-s-line ml-auto"></i>
+            </a>
+        </li>
+
 
 
 </div>
