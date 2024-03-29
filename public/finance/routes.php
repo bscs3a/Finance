@@ -1,8 +1,8 @@
 <?php
 
-$_SESSION['user'] = 'admin';
+// $_SESSION['user'] = 'admin';
 $_SESSION['role'] = 'admin';
-$_SESSION['fullname'] = "Tagle, Aries";
+$_SESSION['employee_name'] = "Tagle, Aries";
 
 $path = './public/finance/views';
 
@@ -95,8 +95,4 @@ Router::post('/test', function () {
     $rootFolder = dirname($_SERVER['PHP_SELF']);
     header("Location: $rootFolder/fin/ledger");
 });
-
-
-
-
 

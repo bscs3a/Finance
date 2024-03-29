@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+// require_once 'functions/auditLog/getAuditLog.php';
+// $data = getAccountantAuditLog();
+// $logs = $data['auditLogs'];
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="./../src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+
 </head>
+
+
 
 <body>
     <!-- Start: Sidebar -->
-    <?php include "components/sidebar.php" ?>
+    <?php
+    include "components/sidebar.php";
+
+    $db = Database::getInstance();
+
+    $pdo = $db->connect();
+
+
+    // $employee_name = $_SESSION['employee_name'];
+
+    // // Query for audit logs
+    // $sql = "SELECT * FROM tbl_fin_audit WHERE employee_name = :employee_name";
+    $sql = "INSERT INTO tbl_fin_audit (employee_name, log_action, created_at) VALUES ('Tagle, Aries', 'Log in', 'current_timestamp()')";
+    $stmt = $pdo->prepare($sql);
+    // $stmt->bindParam(':employee_name', $employee_name);
+    $stmt->execute();
+    // $auditLogs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    // include_once './../functions/auditLog/getAuditLog.php';
+    // $data = getAccountantAuditLog();
+    // $logs = $data['auditLogs'];
+    ?>
     <!-- End: Sidebar -->
     <!-- Start: Dashboard -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main font-sans">
@@ -46,7 +77,7 @@
                         <a class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-black bg-white rounded-md shadow-sm hover:bg-gray-50 focus:outline-none hover:cursor-pointer"
                             id="options-menu" aria-haspopup="true" aria-expanded="true">
                             <div class="text-black font-medium mr-4 ">
-                                <?= $_SESSION['fullname']; ?>
+                                <?php echo $_SESSION['fullname']; ?>
                             </div>
                             <i class="ri-arrow-down-s-line"></i>
                         </a>
@@ -84,58 +115,37 @@
         <!-- End: Header -->
 
         <h2>Hellow</h2>
-
         <!-- Start: Audit Logs Table -->
         <div class="mt-20 overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <!-- <th class="px-6 py-3 taxt-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th> -->
-                            <th class="px-6 py-3 taxt-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                            <th class="px-6 py-3 taxt-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                            <th class="px-6 py-3 taxt-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tagle, Aries</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Log in</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">March 29, 2024</td>
-                        </tr>
-                    </tbody>
+                <thead class="bg-gray-50">
+                    <tr>
+                        <!-- <th class="px-6 py-3 taxt-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th> -->
+                        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            User
+                        </td>
+                        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Action
+                        </td>
+                        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Timestamp
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            asd
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            das
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">March 29, 2024</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <!-- End: Audit Logs Table -->
-    </body>
+</body>
 
 </html>
-
-
-<?php
-// Fetch audit logs from the database
-// $query = "SELECT * FROM audit_logs ORDER BY timestamp DESC";
-// $result = mysqli_query($conn, $query);
-
-// echo '<table class="min-w-full divide-y divide-gray-200">';
-// echo '<thead class="bg-gray-50">';
-// echo '<tr>';
-// echo '<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>';
-// echo '<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>';
-// echo '<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timestamp</th>';
-// echo '<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>';
-// echo '</tr>';
-// echo '</thead>';
-// echo '<tbody class="bg-white divide-y divide-gray-200">';
-
-// while ($row = mysqli_fetch_assoc($result)) {
-//     echo '<tr>';
-//     echo '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">' . $row['id'] . '</td>';
-//     echo '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">' . $row['action'] . '</td>';
-//     echo '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">' . $row['timestamp'] . '</td>';
-//     echo '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">' . $row['user'] . '</td>';
-//     echo '</tr>';
-// }
-
-// echo '</tbody>';
-// echo '</table>';
-?>

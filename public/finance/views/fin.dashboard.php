@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,13 @@
 
 <body>
     <!-- Start: Sidebar -->
-    <?php include "components/sidebar.php" ?>
+    <?php
+
+    include "components/sidebar.php";
+
+    // addAccountantAuditLog('Log in');
+    ?>
+
     <!-- End: Sidebar -->
     <!-- Start: Dashboard -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main font-sans">
