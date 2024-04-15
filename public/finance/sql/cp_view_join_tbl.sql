@@ -34,3 +34,19 @@ CREATE TABLE tbl_record_per_department (
 
 );
 
+
+
+INSERT INTO ledger (LedgerNo, AccountType, Name, contactIfLE, contactName)
+VALUES (27, 7, 'Maintenance and Repairs', NULL, NULL),
+(28, 7, 'Miscellaneous', NULL, NULL);
+
+
+INSERT INTO ledgertransaction (LedgerNo, LedgerNo_Dr, amount, details)
+VALUES (16, 2, 1000, 'Fuel/Gas');
+
+INSERT INTO tbl_record_per_department (fk_LedgerXactID, fk_department_id)
+VALUES (last_insert_id() ,2);
+
+SELECT * FROM ledgertransaction WHERE LedgerXactID = last_insert_id();
+SELECT last_insert_id();
+SELECT * FROM tbl_record_per_department;
