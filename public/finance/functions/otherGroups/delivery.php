@@ -42,9 +42,10 @@ const TRANSACTION_DETAILS = "Fuel/Gas";
 /*
 @author: Rokhai
 @department: STRING user department
-
-
-
+@details: STRING details of the transactio
+@payUsing: STRING mode of payment such Cash on Hand, Cash on Bank
+@payFor: STRING what you are paying for in the transaction
+$amount: INT amount of the transaction
 */
 function insertDeliveryExpense($department = "", $details = "",$payUsing = "", $payFor = "", $amount) {
 
@@ -97,6 +98,7 @@ function insertDeliveryExpense($department = "", $details = "",$payUsing = "", $
     return true;
 }
 
+// check pay for
 function deliveryCheckPayFor($payFor) {
     $valid = getDeliveryValidPayFor();
     if (in_array($payFor, $valid))
@@ -104,10 +106,8 @@ function deliveryCheckPayFor($payFor) {
     return false;
 }
 
-/*
-Valid list are Fuel/Gas, Maintenance and Repairs, Miscellaneous
-
-*/
+// check valid pay
+// Valid list are Fuel/Gas, Maintenance and Repairs, Miscellaneous
 function getDeliveryValidPayFor() {
     $valid = [];
     $notInclude = getNotInclude();
@@ -133,6 +133,7 @@ function getDeliveryValidPayFor() {
 
 }
 
+// check ledger code for delivery department only
 function getDeliveryLedgerCode($ledgerName) {
     if ($ledgerName === null)
         return false;
@@ -148,7 +149,7 @@ function getDeliveryLedgerCode($ledgerName) {
     return $ledgerCode;
 
 }
-
+// check department
 function checkDepartment($department){
     $validDepartments = ["Delivery", "Finance", "Human Resource", "Inventory", "Product Order", "Sales"];
     if (in_array($department, $validDepartments)) {
